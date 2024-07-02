@@ -73,7 +73,6 @@ function throllte(func, waitTime, options = {}) {
     const now = +new Date();
     if (!previous && !options.leading) previous = now;
     const remaining = waitTime - (now - previous);
-    console.log(now, previous, remaining);
     context = this;
     args = arguments;
 
