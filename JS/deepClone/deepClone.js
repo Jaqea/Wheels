@@ -1,6 +1,6 @@
 /**
  * 深拷贝
- * @param obj - 需要深拷贝的对象
+ * @param obj - 需要深拷贝的对象, 类型可为原始值、数组、对象、Map
  */
 function deepClone(obj) {
   const map = new Map();
