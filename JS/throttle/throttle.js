@@ -57,7 +57,7 @@ const setCount = function () {
 //   };
 // }
 
-function throllte(func, waitTime, options = {}) {
+function throttle(func, waitTime, options = {}) {
   let context, args, timeoutId, result;
   previous = 0;
   if (!options) options = {};
@@ -113,3 +113,18 @@ ndContainer.addEventListener("mousemove", setCountAction);
 ndBtn.addEventListener("click", function () {
   setCountAction.cancel();
 });
+
+const throttle = function (fnc, waitTime) {
+  let previous;
+
+  const throttled = function () {
+    const now = +new Date();
+    if (now - previous >= waitTime) {
+      result = fnc.apply(this, arguments);
+    }
+
+    return result;
+  };
+
+  return throttled;
+};
