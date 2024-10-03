@@ -222,7 +222,7 @@ function prototype(child, parent) {
 Object.myCreate = function (proto) {
   function fNOP() {}
 
-  fNOP.prototype = proto.prototype;
+  fNOP.prototype = proto;
   fNOP.prototype.constructor = fNOP;
 
   return new fNOP();

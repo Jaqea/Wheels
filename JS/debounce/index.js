@@ -21,7 +21,7 @@ const debounce = function (func, waitTime, immediate) {
       if (callNow) result = func.apply(context, args);
     } else {
       timoutId = setTimeout(function () {
-        result = func.apply(context, args);
+        func.apply(context, args);
       }, waitTime);
     }
     return result;

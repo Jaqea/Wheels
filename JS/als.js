@@ -357,3 +357,157 @@ function createStorage(key, value) {
     clear,
   };
 }
+
+function TreeNode(value, left, right) {
+  this.value = value || null;
+  this.left = left || null;
+  this.right = right || null;
+}
+
+function preorder(root) {
+  if (!root) {
+    return null;
+  }
+
+  const stack = [];
+  let top = 0;
+  stack[top++] = root;
+  while (top) {
+    const node = stack[--top];
+    console.log(node.value);
+    if (node.right) {
+      stack[top++] = node.right;
+    }
+    if (node.left) {
+      stack[top++] = node.left;
+    }
+  }
+}
+
+function inorder(root) {
+  if (!root) {
+    return null;
+  }
+
+  const stack = [];
+  let p = root,
+    top = 0;
+
+  while (p || top) {
+    if (p) {
+      stack[top++] = p;
+      p = p.left;
+    } else {
+      p = stack[--top];
+      console.log(p.val);
+      p = p.right;
+    }
+  }
+}
+
+function postorder(root) {
+  if (!root) {
+    return null;
+  }
+
+  const stack = [],
+    res = [];
+  let top = 0;
+  stack[top++] = root;
+
+  while (top) {
+    const node = stack[--top];
+    res.push(node.value);
+    if (node.left) {
+      stack[top++] = node.left;
+    }
+    if (node.right) {
+      stack[top++] = node.right;
+    }
+  }
+
+  return res.reverse();
+}
+
+function levelorder(root) {
+  if (!root) {
+    return null;
+  }
+
+  const queue = [],
+    res = [];
+  let front = (rear = 0);
+  queue[rear++] = root;
+
+  while (front !== rear) {
+    const LEN = rear - front;
+    const item = [];
+
+    for (let i = 0; i < LEN; i++) {
+      const node = queue[front++];
+      item.push(node.value);
+      if (node.left) {
+        queue[rear++] = node.left;
+      }
+      if (node.right) {
+        queue[rear++] = node.right;
+      }
+    }
+
+    res.push(item);
+  }
+
+  return res;
+}
+
+function createTree(arr) {
+  if (!arr.length) {
+    return null;
+  }
+
+  const queue = [],
+    root = new TreeNode(arr[0]);
+  queue.push(root);
+
+  for (let i = 0; i < Math.floor(arr.length / 2); i++) {
+    const node = queue.shift();
+    if (arr[2 * i + 1]) {
+      node.left = new TreeNode(arr[2 * i + 1]);
+      queue.push(node.left);
+    }
+    if (arr[2 * i + 2]) {
+      node.right = new TreeNode(arr[2 * i + 2]);
+      queue.push(node.right);
+    }
+  }
+
+  return root;
+}
+
+function createTree(arr) {
+  if (!arr.length) {
+    return null;
+  }
+
+  const queue = [],
+    root = new TreeNode(arr.shift());
+  queue.push(root);
+
+  while (queue.length) {
+    const node = queue.shift();
+    if (arr.length) {
+      const leftValue = arr.shift();
+      const rightValue = arr.shift();
+      if (leftValue) {
+        node.left = new TreeNode(leftValue);
+        queue.push(node.left);
+      }
+      if (rightValue) {
+        node.right = new TreeNode(rightValue);
+        queue.push(node.right);
+      }
+    }
+  }
+
+  return root;
+}
