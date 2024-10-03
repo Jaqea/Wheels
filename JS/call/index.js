@@ -22,7 +22,7 @@ function initMyCallES6() {
 }
 
 /**
- * 实现call, ES6写法
+ * 实现call, ES3写法
  * @param context - 新的this指向对象
  */
 function initMyCallES3() {
